@@ -27,6 +27,6 @@ pnpm install --filter=karin-plugin-orchid
 目前只提供文字帮助：#memes帮助
 
 ## Credit
-[yunzai-memes](https://github.com/ikechan8370/yunzai-meme)\
-[meme-generator](https://github.com/MeetWq/meme-generator)\
-[Karin](https://karinjs.github.io/Karin/)
+* [yunzai-memes](https://github.com/ikechan8370/yunzai-meme)
+* [meme-generator](https://github.com/MeetWq/meme-generator)
+* [Karin](https://karinjs.github.io/Karin/)
