@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./lib/imports",
+    "paths": {
+      "#Karin": [
+        "index.js"
+      ],
+      "#template": [
+        "template.js"
+      ]
+    }
+  },
+  "exclude": [
+    "**/node_modules/*",
+    "**/resources/*",
+    "**/temp/*",
+    "**/data/*"
+  ],
+  "extends": "../../jsconfig.json",
+  "include": [
+    "./**/*"
+  ]
+}
