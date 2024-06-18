@@ -1,1 +1,16 @@
-key: value
+api: https://memes.ikechan8370.com
+
+# 机器人发表情是否引用回复用户消息
+reply: true
+
+# 是否强制前缀
+forcePrefix: false
+
+# 若开启强制前缀，必须以前缀开头
+prefix: "#"
+
+# 主人反撅
+masterProtect: true
+
+# 用户输入的图片最大支持的文件大小，单位为MB
+maxFileSize: 10
