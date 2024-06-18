@@ -14,3 +14,19 @@ masterProtect: true
 
 # 用户输入的图片最大支持的文件大小，单位为MB
 maxFileSize: 10
+
+luck:
+  # 今日运气每个人每天最多获取次数
+  maxNum: 5
+  # 若为true，主人可以无限刷新
+  masterInfinite: false
+
+  lowTemplate: 今日你的运气为$luck点,不要灰心,相信自己,明天会变得更差！
+
+  middleTemplate: 今日你的运气为$luck点,人品还行噢,可以安全出门啦！
+
+  highTemplate: 今日你的运气为$luck点,建议去单抽出奇迹噢！
+
+  maxTemplate: 今日你的运气为$luck点,你今天就是天选之人！！
+
+  infiniteTemplate: 今日你的运气为∞点,你今天无敌了！！！为王的诞生献上礼炮！
