@@ -15,6 +15,9 @@ masterProtect: true
 # 用户输入的图片最大支持的文件大小，单位为MB
 maxFileSize: 10
 
+# 填了部分境外请求会走代理加速
+proxy:
+
 luck:
   # 今日运气每个人每天最多获取次数
   maxNum: 5

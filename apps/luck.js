@@ -6,9 +6,9 @@ export class luck extends plugin {
   constructor () {
     const option = {
       // 必选 插件名称
-      name: 'meme',
+      name: 'luck',
       // 插件描述
-      dsc: '制作表情包',
+      dsc: '今日运气',
       // 监听消息事件 默认message
       event: 'message',
       // 优先级
