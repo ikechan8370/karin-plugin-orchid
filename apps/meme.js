@@ -296,7 +296,7 @@ export class meme extends plugin {
           for (const val of reply) {
             if (val.type === 'image') {
               console.log(val)
-              imgUrls.push(val.url)
+              imgUrls.push(val.file)
             }
           }
         }
