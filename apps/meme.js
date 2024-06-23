@@ -281,7 +281,7 @@ export class meme extends plugin {
       // 可以有图，来从回复、发送和头像找图
       let imgUrls = []
       const source = /** @type {KarinReplyElement} **/ e.elements.find(ele => ele.type === 'reply')
-      const imgWith = /** @type {KarinImageElement} **/ e.elements.find(m => m.type === 'image')
+      const imgWith = /** @type {KarinImageElement[]} **/ e.elements.filter(m => m.type === 'image')
       if (source) {
         // 优先从回复找图
         let reply
@@ -300,7 +300,7 @@ export class meme extends plugin {
             }
           }
         }
-      } else if (imgWith) {
+      } else if (imgWith?.length > 0) {
         // 一起发的图
         imgUrls.push(...imgWith)
       } else if (e.elements.filter(m => m.type === 'at').length > 0) {
