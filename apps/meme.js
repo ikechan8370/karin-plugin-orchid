@@ -302,7 +302,7 @@ export class meme extends plugin {
         }
       } else if (imgWith?.length > 0) {
         // 一起发的图
-        imgUrls.push(...imgWith)
+        imgUrls.push(...imgWith.map(i => i.file))
       } else if (e.elements.filter(m => m.type === 'at').length > 0) {
         // 艾特的用户的头像
         const ats = /** @type {KarinAtElement[]} **/ e.elements.filter(m => m.type === 'at')
