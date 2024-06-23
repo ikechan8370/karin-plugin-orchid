@@ -33,3 +33,9 @@ luck:
   maxTemplate: 今日你的运气为$luck点,你今天就是天选之人！！
 
   infiniteTemplate: 今日你的运气为∞点,你今天无敌了！！！为王的诞生献上礼炮！
+
+tools:
+  ip_source:
+   - ip-api.com
+   - ip.sb
+   - ipinfo.io
