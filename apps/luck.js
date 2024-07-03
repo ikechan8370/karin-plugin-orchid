@@ -1,8 +1,8 @@
-import { plugin, redis, segment } from '#Karin'
+import { Plugin, redis, segment } from 'node-karin'
 import Cfg from '../lib/config/config.js'
 import moment from 'moment'
 
-export class luck extends plugin {
+export class luck extends Plugin {
   constructor () {
     const option = {
       // 必选 插件名称

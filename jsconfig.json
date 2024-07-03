@@ -2,9 +2,6 @@
   "compilerOptions": {
     "baseUrl": "./lib/imports",
     "paths": {
-      "#Karin": [
-        "index.js"
-      ],
       "#template": [
         "template.js"
       ]

@@ -1,17 +1,16 @@
-import {plugin, segment, config} from '#Karin'
 import Cfg from '../lib/config/config.js'
-import fetch, {File, FormData} from 'node-fetch'
-import {checkFileSize, DATA_DIR, mkdirs} from '../utils/common.js'
+import { Plugin, segment, config } from 'node-karin'
+import fetch, { File, FormData } from 'node-fetch'
+import { checkFileSize, DATA_DIR, mkdirs } from '../utils/common.js'
 import fs from 'fs'
 import _ from 'lodash'
-import {KarinContact} from '../../../lib/bot/KarinElement.js'
 
 const UA = 'karin-plugin-orchid/1.0.0'
 let keyMap = {}
 
 let infos = {}
 
-export class meme extends plugin {
+export class Meme extends Plugin {
   constructor () {
     const fixedRules = [
       {
@@ -98,7 +97,7 @@ export class meme extends plugin {
     this.task = [{
       cron: generateCronExpression(),
       name: 'memes自动更新任务',
-      fnc: this.init.bind(this),
+      fnc: 'init',
     }]
   }
 
@@ -246,7 +245,7 @@ export class meme extends plugin {
   async randomMemes (e) {
     const keys = Object.keys(infos).filter(key => infos[key].params.min_images === 1 && infos[key].params.min_texts === 0)
     const index = _.random(0, keys.length - 1, false)
-    console.log(keys, index)
+    // console.log(keys, index)
     e.msg = infos[keys[index]].keywords[0]
     return await this.memes(e)
   }
@@ -286,10 +285,10 @@ export class meme extends plugin {
         // 优先从回复找图
         let reply
         if (e.isGroup) {
-          const replyMsg = await this.e.bot.GetMessage(KarinContact.group(this.e.group_id), source.message_id)
+          const replyMsg = await this.e.bot.GetMessage(this.e.contact, source.message_id)
           reply = replyMsg.elements
         } else {
-          const replyMsg = await this.e.bot.GetMessage(KarinContact.private(this.e.sender.uin), source.message_id)
+          const replyMsg = await this.e.bot.GetMessage(this.e.contact, source.message_id)
           reply = replyMsg.elements
         }
         if (reply) {
@@ -358,7 +357,7 @@ export class meme extends plugin {
      */
     let sender
     if (e.isGroup) {
-      sender = await this.e.bot.GetGroupMemberInfo({ group_id: this.e.group_id, target_uid: this.e.sender.uid, target_uin: this.e.sender.uin })
+      sender = await this.e.bot.GetGroupMemberInfo(this.e.group_id, this.e.sender.uid)
     } else {
       sender = this.e.sender
     }
@@ -388,7 +387,7 @@ export class meme extends plugin {
     }
     if (e.elements.filter(m => m.type === 'at').length > 0) {
       userInfos = /** @type {KarinAtElement[]} **/ e.elements.filter(m => m.type === 'at')
-      const mm = await this.e.bot.GetGroupMemberList({ group_id: this.e.group_id })
+      const mm = await this.e.bot.GetGroupMemberList(this.e.group_id)
       userInfos.forEach(ui => {
         const user = mm.find(m => m.uin === ui.uin)
         if (user) {
@@ -417,7 +416,7 @@ export class meme extends plugin {
       body: formData,
       headers: {
         // 'Content-Type': 'multipart/form-data'
-        'User-Agent': UA
+        'User-Agent': UA,
       },
     })
     // console.log(response.status)
@@ -499,7 +498,7 @@ function handleArgs (key, args, userInfos) {
       argsObj = { position: directionMap[args.trim()] || 'right' }
       break
     }
-    case 'dog_dislike' : {
+    case 'dog_dislike': {
       argsObj = { circle: args.startsWith('圆') }
       break
     }

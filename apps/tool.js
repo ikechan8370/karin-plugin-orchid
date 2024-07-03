@@ -1,9 +1,9 @@
-import { common, plugin, segment } from '#Karin'
+import { common, Plugin, segment } from 'node-karin'
 import { deleteOtp, generateOTP, getSecretFromURL, listOtps, readOtpByName, readQRCode, saveOtp } from '../utils/otp.js'
 import Cfg from '../lib/config/config.js'
 import { getIpGeoInfo } from '../utils/ip.js'
 
-export class tools extends plugin {
+export class tools extends Plugin {
   constructor () {
     const option = {
       // 必选 插件名称
