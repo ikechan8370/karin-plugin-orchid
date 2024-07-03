@@ -1,8 +1,8 @@
-import { plugin, redis, segment, common } from '#Karin'
+import { Plugin, segment, common } from 'node-karin'
 import Cfg from '../lib/config/config.js'
 import axios from 'axios'
 
-export class cat extends plugin {
+export class cat extends Plugin {
   constructor () {
     const option = {
       // 必选 插件名称
