@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{@pluResPath}}template/rss.css">
+    <style>
+        body {
+            min-width: 600px;
+            /*min-height: 600px;*/
+            /*padding: 20px;*/
+            overflow: hidden;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="three">
+        <h1>{{@title}}</h1>
+    </div>
+    <div class="date">
+        {{pubDate}}&nbsp;&nbsp;&nbsp;Origin: {{link}}
+    </div>
+    <div class="description">
+        {{@content}}
+    </div>
+    <div class="footer">
+        <div class="divider"></div>
+        [{{name}}] Pushed by Karin-Plugin-Orchid
+    </div>
+</div>
+
+</body>
+
+</html>
+
+<style>
+
+
+</style>
