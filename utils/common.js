@@ -29,3 +29,16 @@ export function checkFileSize (files) {
   }
   return fileList.some(file => file.size >= maxFileSizeByte)
 }
+
+
+export function formatRssPubDate (pubDate) {
+  const dateObj = new Date(pubDate);
+  return dateObj.toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false // 24小时制
+  });
+}

@@ -39,3 +39,25 @@ tools:
    - ip-api.com
    - ip.sb
    - ipinfo.io
+
+rss:
+  cron: "*/5 * * * *"
+  # sender: []
+  default_group: []
+  rsshub_url: https://rsshub.app
+  subscribe_list:
+    - name: github_issue
+      preset: github_issue
+      presetConfig:
+        org: DIYgod
+        repo: RSSHub
+        type: all # all open closed
+    - name: 海淀天气预警
+      url: ${rsshub_url}/nmc/weatheralarm/北京市
+      postHandlers:
+        - name: keyword_filter
+          args:
+            mustContain: "海淀"
+            mustNotContain: "通州"
+      group: ["123456789"]
+
