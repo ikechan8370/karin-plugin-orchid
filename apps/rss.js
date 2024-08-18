@@ -4,7 +4,7 @@ import Cfg from '../lib/config/config.js'
 import {dirPath, PluginName} from "../index.js";
 import {collectHandlers} from "../lib/rss/post_handler.js";
 import {formatRssPubDate} from "../utils/common.js";
-import {buildRssUrl} from "../lib/rss/presets/index.js";
+import {buildRssUrl, DEFAULT_RSS_HUB_BASEURL} from "../lib/rss/presets/index.js";
 global.rssLock = false
 
 export const RSS = karin.task("rss", Cfg.Default.rss.cron || "*/5 * * * *", async () => {
@@ -27,6 +27,9 @@ async function rss () {
     global.rssLock = true
     try {
         let rssConfig = Cfg.Default.rss
+        if (!rssConfig.rsshub_url) {
+            rssConfig.rsshub_url = DEFAULT_RSS_HUB_BASEURL
+        }
         let defaultGroups = rssConfig.default_group
         /** @type { import("node-karin").KarinAdapter[] } */
         let bot
