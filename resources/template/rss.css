@@ -1,0 +1,100 @@
+.container {
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.container img {
+  max-width: calc(100% - 40px);
+  height: auto;
+  /*display: block;*/
+  /*padding-right: 20px;*/
+  /*margin: 0 auto;*/
+}
+.container video {
+  max-width: calc(100% - 40px);
+  height: auto;
+  /*display: block;*/
+  /*padding-right: 20px;*/
+  /*margin: 0 auto;*/
+}
+.three h1 {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5em;
+  padding-bottom: 5px;
+  position: relative;
+  font-family: ChillYunmoGothicBold, Chillax-Regular, sans-serif;
+}
+.three h1:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  width: 55px;
+  background-color: #111;
+}
+.three h1:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1px;
+  width: 95%;
+  max-width: 255px;
+  background-color: #1f1f1f;
+}
+
+@font-face {
+  font-family: 'ChillYunmoGothicBold';
+  src: url('../fonts/ChillYunmoGothicBold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'ChillYunmoGothicRegular';
+  src: url('../fonts/ChillYunmoGothicRegular.otf.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Chillax-Regular';
+  src: url('../fonts/Chillax-Regular.otf') format('opentype');
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  /*margin-bottom: 5px;*/
+}
+
+.description {
+  font-family: ChillYunmoGothicRegular, Chillax-Regular, sans-serif;
+  font-size: 18px;
+  width: calc(100% - 40px);
+}
+
+.date {
+  font-family: Chillax-Regular, ChillYunmoGothicRegular, sans-serif;
+  font-size: 14px;
+  color: #343d3d;
+  width: calc(100% - 40px);
+}
+
+.footer {
+  font-size: 16px;
+  color: #446363;
+  font-family: Chillax-Regular, sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  /*padding-bottom: 10px;*/
+}
+
+.divider {
+  border-bottom: 1px solid #363636;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: calc(100% - 40px);;
+}

@@ -23,8 +23,13 @@ lerna-debug.log*
 /plugins/
 /data/
 /config/config
-/resources
 
 # 依赖
 node_modules/
 config/config/pm2.yaml
+
+lib/rss/handlers/*
+!lib/rss/handlers/github.js
+!lib/rss/handlers/keyword_filter.js
+
+test
