@@ -38,8 +38,8 @@ async function rss () {
             bot = rssConfig.sender.map(sender => karin.getBot(sender)).filter(s => s !== undefined)
         } else {
             bot = [karin.list.find(b => {
-                console.log(b.bot.version)
-                return b.bot.version?.name !== "input1"
+                // console.log(b.bot.version)
+                return b.bot.version?.name !== "input"
             }).bot]
         }
         const handlers = await collectHandlers()
