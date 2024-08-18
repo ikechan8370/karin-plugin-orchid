@@ -41,23 +41,31 @@ tools:
    - ipinfo.io
 
 rss:
+  # 控制检查更新频率
   cron: "*/5 * * * *"
+  # 发送主动推送消息的bot，填入字符串qq号，例如["12345667"]
   # sender: []
+  # 默认发送到哪些群，如["12345678", "23456789"]
   default_group: []
+  # rsshub地址，可以填自建地址或官方反代
   rsshub_url: https://rsshub.app
+  # 默认图片背景
+  background: https://api.armoe.cn/acg/random
+  # 订阅rss列表
   subscribe_list:
-    - name: github_issue
-      preset: github_issue
-      presetConfig:
-        org: DIYgod
-        repo: RSSHub
-        type: all # all open closed
-    - name: 海淀天气预警
-      url: ${rsshub_url}/nmc/weatheralarm/北京市
-      postHandlers:
-        - name: keyword_filter
-          args:
-            mustContain: "海淀"
-            mustNotContain: "通州"
-      group: ["123456789"]
+#    - name: github_issue # 名称，必须唯一
+#      preset: github_issue # 使用预设，支持的预设包括'github_commit' | 'github_release' | 'github_issue' | 'github_pr' | 'telegram_channel' | 'bilibili_dynamic' | 'earthquake' | 'weather_forecast'
+#      background: https://pages.github.nceas.ucsb.edu/lter/github-workshop/images/github-logo.png # 图片背景，不填将使用默认
+#      presetConfig: #预设的配置，每个预设有不同的预设格式
+#        org: KarinJS
+#        repo: Karin
+#        type: all # 类型，all open closed
+#    - name: 海淀天气预警
+#      url: ${rsshub_url}/nmc/weatheralarm/北京市 # 不使用预设，使用rss的链接。可以使用${rsshub_url}变量引用rsshub地址
+#      postHandlers: # 后处理器列表，会在拉取到订阅内容后依次处理。目前内置两个后处理器，github和关键词过滤。可以仿照示例自行编写后处理器放置于lib/rss/handlers下面
+#        - name: keyword_filter # 关键词过滤后处理器，过滤掉不包含/包含关键词的内容
+#          args: # 处理器的传参
+#            mustContain: "海淀"
+#            mustNotContain: "通州"
+#      group: ["123456789"]
 
