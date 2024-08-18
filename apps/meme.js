@@ -243,7 +243,7 @@ export class Meme extends Plugin {
   }
 
   async randomMemes (e) {
-    const keys = Object.keys(infos).filter(key => infos[key].params.min_images === 1 && infos[key].params.min_texts === 0)
+    const keys = Object.keys(infos).filter(key => infos[key].params_type.min_images === 1 && infos[key].params_type.min_texts === 0)
     const index = _.random(0, keys.length - 1, false)
     // console.log(keys, index)
     e.msg = infos[keys[index]].keywords[0]
@@ -276,7 +276,7 @@ export class Meme extends Plugin {
     const formData = new FormData()
     const info = infos[targetCode]
     let fileLoc
-    if (info.params.max_images > 0) {
+    if (info.params_type.max_images > 0) {
       // 可以有图，来从回复、发送和头像找图
       let imgUrls = []
       const source = /** @type {KarinReplyElement} **/ e.elements.find(ele => ele.type === 'reply')
@@ -311,7 +311,7 @@ export class Meme extends Plugin {
         // 如果都没有，用发送者的头像
         imgUrls = [await getAvatar(e)]
       }
-      if (imgUrls.length < info.params.min_images && imgUrls.indexOf(await getAvatar(e)) === -1) {
+      if (imgUrls.length < info.params_type.min_images && imgUrls.indexOf(await getAvatar(e)) === -1) {
         // 如果数量不够，补上发送者头像，且放到最前面
         const me = [await getAvatar(e)]
         let done = false
@@ -331,7 +331,7 @@ export class Meme extends Plugin {
         }
         // imgUrls.push(`https://q1.qlogo.cn/g?b=qq&s=160&nk=${e.msg.sender.user_id}`)
       }
-      imgUrls = imgUrls.slice(0, Math.min(info.params.max_images, imgUrls.length))
+      imgUrls = imgUrls.slice(0, Math.min(info.params_type.max_images, imgUrls.length))
       for (let i = 0; i < imgUrls.length; i++) {
         const imgUrl = imgUrls[i]
         const imageResponse = await fetch(imgUrl)
@@ -345,7 +345,7 @@ export class Meme extends Plugin {
         formData.append('images', new File([buffer], `avatar_${i}.jpg`, { type: 'image/jpeg' }))
       }
     }
-    if (text && info.params.max_texts === 0) {
+    if (text && info.params_type.max_texts === 0) {
       return false
     }
     /**
@@ -361,23 +361,23 @@ export class Meme extends Plugin {
     } else {
       sender = this.e.sender
     }
-    if (!text && info.params.min_texts > 0) {
+    if (!text && info.params_type.min_texts > 0) {
       if (e.elements.filter(m => m.type === 'at').length > 0) {
         text = _.trim(e.elements.filter(m => m.type === 'at')[0].text, '@')
       } else {
         text = sender.card || sender.nick
       }
     }
-    const texts = text.split('/', info.params.max_texts)
-    if (texts.length < info.params.min_texts) {
-      await e.reply(`字不够！要至少${info.params.min_texts}个用/隔开！`, true)
+    const texts = text.split('/', info.params_type.max_texts)
+    if (texts.length < info.params_type.min_texts) {
+      await e.reply(`字不够！要至少${info.params_type.min_texts}个用/隔开！`, true)
       return true
     }
     texts.forEach(t => {
       formData.append('texts', t)
     })
-    if (info.params.max_texts > 0 && formData.getAll('texts').length === 0) {
-      if (formData.getAll('texts').length < info.params.max_texts) {
+    if (info.params_type.max_texts > 0 && formData.getAll('texts').length === 0) {
+      if (formData.getAll('texts').length < info.params_type.max_texts) {
         if (e.elements.filter(m => m.type === 'at').length > 0) {
           formData.append('texts', _.trim(e.elements.filter(m => m.type === 'at')[0].text, '@'))
         } else {
@@ -529,8 +529,8 @@ function handleArgs (key, args, userInfos) {
 const detail = code => {
   const d = infos[code]
   const keywords = d.keywords.join('、')
-  let ins = `【代码】${d.key}\n【名称】${keywords}\n【最大图片数量】${d.params.max_images}\n【最小图片数量】${d.params.min_images}\n【最大文本数量】${d.params.max_texts}\n【最小文本数量】${d.params.min_texts}\n【默认文本】${d.params.default_texts.join('/')}\n`
-  if (d.params.args.length > 0) {
+  let ins = `【代码】${d.key}\n【名称】${keywords}\n【最大图片数量】${d.params_type.max_images}\n【最小图片数量】${d.params_type.min_images}\n【最大文本数量】${d.params_type.max_texts}\n【最小文本数量】${d.params_type.min_texts}\n【默认文本】${d.params_type.default_texts.join('/')}\n`
+  if (d.params_type.args.length > 0) {
     let supportArgs = ''
     switch (code) {
       case 'look_flat': {

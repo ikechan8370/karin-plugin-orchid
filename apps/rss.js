@@ -5,6 +5,7 @@ import {dirPath, PluginName} from "../index.js";
 import {collectHandlers} from "../lib/rss/post_handler.js";
 import {formatRssPubDate} from "../utils/common.js";
 import {buildRssUrl, DEFAULT_RSS_HUB_BASEURL} from "../lib/rss/presets/index.js";
+
 global.rssLock = false
 
 export const RSS = karin.task("rss", Cfg.Default.rss.cron || "*/5 * * * *", async () => {
