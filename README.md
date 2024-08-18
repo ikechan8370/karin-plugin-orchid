@@ -50,14 +50,14 @@ rss:
   background: https://api.armoe.cn/acg/random
   # 订阅rss列表
   subscribe_list:
-    - name: github_issue # 名称，必须唯一
+    - name: Karin Issue # 名称，必须唯一
       preset: github_issue # 使用预设，支持的预设包括 'github_commit' | 'github_release' | 'github_issue' | 'github_pr' | 'telegram_channel' | 'bilibili_dynamic' | 'earthquake' | 'weather_forecast'
       background: github-logo.jpg # 图片背景，不填将使用默认
       presetConfig: #预设的配置，每个预设有不同的预设格式
         org: KarinJS
         repo: Karin
         type: all # 类型，all open closed
-    - name: tg_channle
+    - name: 全球VPS余量监控
       preset: telegram_channel
       presetConfig:
         channel: vps_spiders
