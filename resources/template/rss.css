@@ -20,6 +20,11 @@
   /*padding-right: 20px;*/
   /*margin: 0 auto;*/
 }
+
+.three {
+  width: calc(100% - 40px);
+}
+
 .three h1 {
   font-size: 28px;
   font-weight: 500;
