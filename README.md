@@ -32,6 +32,9 @@ pnpm install --filter=karin-plugin-orchid
 ### 今日运气
 发送`#今日运气`，即可获得今日的运气。加上pro、promax、promaxultra有惊喜。
 
+### 随机菜谱
+发送`#(随机)?菜谱`，即可获得一份随机的菜谱。后面可以接关键词，比如`#菜谱 冰淇淋`。
+
 ### 消息推送
 基于RSS的消息推送。在配置文件config.yaml中配置rss项目和地址即可获得实时推送，建议结合[rsshub](https://docs.rsshub.app/zh/)使用，获得github、天气、预警信息、b站、tg频道、游戏公告等推送。
 
