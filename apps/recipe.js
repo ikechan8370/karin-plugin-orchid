@@ -75,10 +75,11 @@ export const RecipeCmd = karin.command("#?菜谱",  async (e) => {
   let offset = 0, limit = 10
   async function searchRecipe(offset, limit) {
     let searchResult = await Recipe.search(keyword, offset, limit)
-    let text = `"${keyword}"的搜索结果（共${searchResult.results.estimatedTotalHits}条，当前展示第${offset + 1}-${offset + limit}条）：\n`
+    let text = `"${keyword}"的搜索结果（共${searchResult.results.estimatedTotalHits}条，当前展示第${offset + 1}-${offset + limit}条）：\n=================================\nid     菜名 [难度]\n`
     searchResult.results.hits.forEach(hit => {
       text += `${hit.id} ${hit.name} [${hit.难度}]\n`
     })
+    text += '=================================\n'
     text += `请回复单个编号获取菜谱内容，回复下一页/上一页/第X页进行跳转`
     await e.reply(segment.text(text))
 
