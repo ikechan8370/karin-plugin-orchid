@@ -4,6 +4,42 @@ import axios from "axios";
 import {dirPath, PluginName} from "../index.js";
 import Cfg from "../lib/config/config.js";
 
+export const RecommendRecipeCmd = karin.command("#?(吃什么|推荐菜谱)",  async (e) => {
+  const demand = e.msg.replace(/#?(吃什么|推荐菜谱)/, '').trim() || ''
+  let summary = await Recipe.summary(demand)
+  if (summary.recipes.length === 0) {
+    await e.reply('没有找到相关菜谱', {
+      reply: true
+    })
+    return
+  }
+  const recipes = summary.recipes
+  const descr = summary.summary
+  await e.reply(segment.text(`推荐菜谱：${descr}`), {reply: true, at: true})
+
+  let background = Cfg.Default.rss.background || 'https://upload-bbs.miyoushe.com/upload/2024/08/08/11137146/a13030c06cea59159c6cab3d5538731d_6288383820731450582.jpg'
+
+  // lgr转发图片用不了 不写了
+  for (const hit of recipes) {
+    const {levelColor, timeColor} = getAssets(hit)
+    let img = await render.render({
+      file: `./plugins/${PluginName}/resources/template/recipe.html`,
+      data: {
+        hit,
+        levelColor,
+        timeColor,
+        pluResPath: `${dirPath}/resources/`,
+        background
+      },
+      pageGotoParams: {
+        waitUntil: 'networkidle2'
+      }
+    })
+    await e.reply(segment.image(img))
+  }
+
+})
+
 export const RandomRecipeCmd = karin.command("#?随机菜谱",  async (e) => {
   const keyword = e.msg.replace(/#?随机菜谱/, '').trim() || '*'
   let randomOffset = Math.floor(Math.random() * 10000)
