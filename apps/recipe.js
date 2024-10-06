@@ -4,8 +4,8 @@ import axios from "axios";
 import {dirPath, PluginName} from "../index.js";
 import Cfg from "../lib/config/config.js";
 
-export const RecipeCmd = karin.command("#?(随机)?菜谱",  async (e) => {
-  const keyword = e.msg.replace(/#(随机)?菜谱/, '').trim() || '*'
+export const RandomRecipeCmd = karin.command("#?随机菜谱",  async (e) => {
+  const keyword = e.msg.replace(/#?随机菜谱/, '').trim() || '*'
   let randomOffset = Math.floor(Math.random() * 10000)
   let searchResult = await Recipe.search(keyword, randomOffset, 1)
   if (searchResult.results.hits.length === 0) {
@@ -67,8 +67,84 @@ export const RecipeCmd = karin.command("#?(随机)?菜谱",  async (e) => {
   await e.reply(segment.image(img))
 
 }, {
+  name: "random_recipe"
+})
+
+export const RecipeCmd = karin.command("#?菜谱",  async (e) => {
+  const keyword = e.msg.replace(/#?菜谱/, '').trim() || '*'
+  let offset = 0, limit = 10
+  async function searchRecipe(offset, limit) {
+    let searchResult = await Recipe.search(keyword, offset, limit)
+    let text = `"${keyword}"的搜索结果（共${searchResult.results.estimatedTotalHits}条，当前展示第${offset + 1}-${offset + limit}条）：\n`
+    searchResult.results.hits.forEach(hit => {
+      text += `${hit.id} ${hit.name} [${hit.难度}]\n`
+    })
+    text += `请回复单个编号获取菜谱内容，回复下一页/上一页/第X页进行跳转`
+    await e.reply(segment.text(text))
+
+    const ctxReply = await karin.ctx(e)
+
+    const ctxReplyMsg = ctxReply.msg
+    return ctxReplyMsg
+  }
+  let ctxReplyMsg = await searchRecipe(offset, limit)
+
+  async function handleCtxReply(ctxReplyMsg) {
+    if (ctxReplyMsg === '下一页') {
+      offset += limit
+      const newCtxReplyMsg = await searchRecipe(offset, limit)
+      return handleCtxReply(newCtxReplyMsg)
+    } else if (ctxReplyMsg === '上一页') {
+      offset -= limit
+      if (offset < 0) {
+        offset = 0
+      }
+      const newCtxReplyMsg = await searchRecipe(offset, limit)
+      return handleCtxReply(newCtxReplyMsg)
+    } else if (ctxReplyMsg.startsWith('第')) {
+      const page = parseInt(ctxReplyMsg.replace('第', '').replace('页', ''))
+      offset = (page - 1) * limit
+      if (offset < 0) {
+        offset = 0
+      }
+      const newCtxReplyMsg = await searchRecipe(offset, limit)
+      return handleCtxReply(newCtxReplyMsg)
+    } else {
+      const id = parseInt(ctxReplyMsg)
+      if (isNaN(id)) {
+        await e.reply('请输入正确的编号', {
+          reply: true
+        })
+        return
+      }
+      let hit = await Recipe.getById(id)
+      logger.info(JSON.stringify(hit))
+      let background = Cfg.Default.rss.background || 'https://upload-bbs.miyoushe.com/upload/2024/08/08/11137146/a13030c06cea59159c6cab3d5538731d_6288383820731450582.jpg'
+      const {levelColor, timeColor} = getAssets(hit)
+      let img = await render.render({
+        file: `./plugins/${PluginName}/resources/template/recipe.html`,
+        data: {
+          hit,
+          levelColor,
+          timeColor,
+          pluResPath: `${dirPath}/resources/`,
+          background
+        },
+        pageGotoParams: {
+          waitUntil: 'networkidle2'
+        }
+      })
+      await e.reply(segment.image(img))
+
+    }
+  }
+
+  await handleCtxReply(ctxReplyMsg)
+
+}, {
   name: "recipe"
 })
+
 
 function getAssets(hit) {
   const level = hit.难度
