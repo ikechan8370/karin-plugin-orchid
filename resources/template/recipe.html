@@ -20,25 +20,25 @@
     <div class="three">
         <h1>
             {{@hit.name}}
-            <span class="badge" style="background: {{levelColor.inner}}; border: {{levelColor.outer}} solid 1px">{{@hit['ÄÑ¶È']}}</span>
-            <span class="badge" style="background: {{timeColor.inner}}; border: {{timeColor.outer}} solid 1px">{{@hit['ºÄÊ±']}}</span>
+            <span class="badge" style="background: {{levelColor.inner}}; border: {{levelColor.outer}} solid 1px">{{@hit['éš¾åº¦']}}</span>
+            <span class="badge" style="background: {{timeColor.inner}}; border: {{timeColor.outer}} solid 1px">{{@hit['è€—æ—¶']}}</span>
         </h1>
 
     </div>
     <div class="date">
         <span class="ticket">
-            ¹¤ÒÕ£º{{@hit['¹¤ÒÕ']}}
+            å·¥è‰ºï¼š{{@hit['å·¥è‰º']}}
         </span>
         <span class="ticket">
-            ¿ÚÎ¶£º{{@hit['¿ÚÎ¶']}}
+            å£å‘³ï¼š{{@hit['å£å‘³']}}
         </span>
 
     </div>
 
     <div class="description">
-        Ö÷ÁÏ£º{{hit.main_ingredients?.join(', ')}}<br><br>
-        ¸¨ÁÏ: {{hit.supplementary_ingredients?.join(', ')}}<br><br>
-        µ÷ÁÏ: {{hit.seasonings?.join(', ')}}
+        ä¸»æ–™ï¼š{{hit.main_ingredients?.join(', ')}}<br><br>
+        è¾…æ–™: {{hit.supplementary_ingredients?.join(', ')}}<br><br>
+        è°ƒæ–™: {{hit.seasonings?.join(', ')}}
     </div>
 
     <div class="step">
@@ -75,11 +75,11 @@
         width: 100%;
         height: 100%;
         background-image: url("{{background}}");
-        background-size: cover; /* Í¼Æ¬°´±ÈÀıËõ·Å£¬¸²¸ÇÕû¸öÈİÆ÷ */
-        background-position: center; /* Í¼Æ¬¾ÓÖĞÏÔÊ¾ */
-        filter: blur(10px); /* ¸ßË¹Ä£ºıĞ§¹û£¬10px ¿ÉÒÔ¸ù¾İĞèÒªµ÷Õû */
-        opacity: 0.5; /* 50%Í¸Ã÷¶È */
-        z-index: -1; /* È·±£Î±ÔªËØÔÚÆäËûÄÚÈİÏÂ·½ */
+        background-size: cover; /* å›¾ç‰‡æŒ‰æ¯”ä¾‹ç¼©æ”¾ï¼Œè¦†ç›–æ•´ä¸ªå®¹å™¨ */
+        background-position: center; /* å›¾ç‰‡å±…ä¸­æ˜¾ç¤º */
+        filter: blur(10px); /* é«˜æ–¯æ¨¡ç³Šæ•ˆæœï¼Œ10px å¯ä»¥æ ¹æ®éœ€è¦è°ƒæ•´ */
+        opacity: 0.5; /* 50%é€æ˜åº¦ */
+        z-index: -1; /* ç¡®ä¿ä¼ªå…ƒç´ åœ¨å…¶ä»–å†…å®¹ä¸‹æ–¹ */
     }
 
 </style>
