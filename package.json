@@ -3,16 +3,66 @@
   "version": "1.0.1",
   "author": "ikechan8370",
   "type": "module",
+  "main": "lib/index.js",
+  "description": "karin plugin for orchid",
+  "homepage": "https://github.com/ikechan8370/karin-plugin-orchid",
+  "bugs": {
+    "url": "https://github.com/ikechan8370/karin-plugin-orchid/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikechan8370/karin-plugin-orchid.git"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "pub": "npm publish --access public",
+    "sort": "npx sort-package-json",
+    "dev": "karin ts -w"
+  },
   "dependencies": {
     "https-proxy-agent": "^7.0.5",
     "jimp": "^0.22.12",
+    "jsqr": "^1.4.0",
     "node-fetch": "^3.3.2",
     "otplib": "^12.0.1",
-    "qrcode-reader": "^1.0.4",
     "rss-parser": "^3.13.0",
     "xml2js": "^0.6.2"
   },
-  "imports": {
-    "#template": "./lib/imports/template.js"
+  "devDependencies": {
+    "@types/node": "^20.17.8",
+    "@types/xml2js": "^0.4.14",
+    "neostandard": "^0.12.0",
+    "node-karin": "0.12.25-beta.pr.206.1-1734735433",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "karin": {
+    "main": "src/index.ts",
+    "apps": [
+      "lib/apps"
+    ],
+    "ts-apps": [
+      "src/apps"
+    ],
+    "static": [
+      "resources"
+    ],
+    "files": [
+      "config",
+      "data",
+      "resources"
+    ],
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "lib/**/*",
+      "@karinjs/**/*"
+    ]
   }
 }

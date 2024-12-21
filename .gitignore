@@ -33,3 +33,5 @@ lib/rss/handlers/*
 !lib/rss/handlers/keyword_filter.js
 
 test
+@karinjs/
+lib/
