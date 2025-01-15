@@ -17,7 +17,17 @@
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "pub": "npm publish --access public",
     "sort": "npx sort-package-json",
-    "dev": "karin ts -w"
+    "dev": "karin dev",
+    "karin": "karin",
+    "app": "karin app",
+    "start": "karin start",
+    "pm2": "karin pm2",
+    "stop": "karin stop",
+    "rs": "karin rs",
+    "log": "karin log",
+    "up": "karin up",
+    "ts": "karin ts",
+    "watch": "karin watch"
   },
   "dependencies": {
     "https-proxy-agent": "^7.0.5",
@@ -32,7 +42,7 @@
     "@types/node": "^20.17.8",
     "@types/xml2js": "^0.4.14",
     "neostandard": "^0.12.0",
-    "node-karin": "0.12.25-beta.pr.206.1-1734735433",
+    "node-karin": "1.0.0",
     "tsc-alias": "^1.8.10",
     "tsx": "^4.19.2",
     "typescript": "^5.5.3"

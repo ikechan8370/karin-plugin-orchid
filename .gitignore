@@ -35,3 +35,5 @@ lib/rss/handlers/*
 test
 @karinjs/
 lib/
+.env
+pnpm-workspace.yaml
