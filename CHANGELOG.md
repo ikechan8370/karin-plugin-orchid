@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/ikechan8370/karin-plugin-orchid/compare/v1.0.0...v1.0.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* update lib ([251cb02](https://github.com/ikechan8370/karin-plugin-orchid/commit/251cb02a57f1b292d6ca3c46ed71136df644c223))
+
 ## 1.0.0 (2025-02-11)
 
 
