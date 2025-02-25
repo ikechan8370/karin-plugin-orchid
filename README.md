@@ -10,16 +10,18 @@
 karin根目录根据你使用的保管理器选择以下命令其中一个安装插件
 
 ```bash
-pnpm add -w karin-plugin-orchid
+pnpm add -w karin-plugin-orchid@latest
 ```
 
 ```bash
-npm i karin-plugin-orchid
+npm i karin-plugin-orchid@latest
 ```
 
 ```bash
-yarn add karin-plugin-orchid
+yarn add karin-plugin-orchid@latest
 ```
+
+更新命令相同
 
 ## 功能
 
