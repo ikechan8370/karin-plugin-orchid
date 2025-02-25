@@ -7,16 +7,18 @@
 ## 安装
 ### 克隆仓库
 
-karin根目录执行以下命令克隆仓库到本地
+karin根目录根据你使用的保管理器选择以下命令其中一个安装插件
 
 ```bash
-git clone https://github.com/ikechan8370/karin-plugin-orchid.git ./plugins/karin-plugin-orchid
+pnpm add -w karin-plugin-orchid
 ```
 
-### 安装依赖
+```bash
+npm i karin-plugin-orchid
+```
 
 ```bash
-pnpm install --filter=karin-plugin-orchid
+yarn add karin-plugin-orchid
 ```
 
 ## 功能
