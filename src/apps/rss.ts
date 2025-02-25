@@ -3,7 +3,7 @@ import { fetchRSS } from '@/rss/rss'
 import { config } from '@/utils/config'
 import { dirPath, } from '@/utils/dir'
 import { collectHandlers } from '@/rss/post_handler'
-import { formatRssPubDate } from '../utils/common.js'
+import { formatRssPubDate } from '../utils/common'
 import { buildRssUrl, DEFAULT_RSS_HUB_BASEURL, RSSPresetType } from '@/rss/presets/index'
 
 let rssLock = false
@@ -24,18 +24,22 @@ async function rss () {
   rssLock = true
   try {
     const rssConfig = config().rss
+    if (!rssConfig.subscribe_list) {
+      return
+    }
     if (!rssConfig.rsshub_url) {
       rssConfig.rsshub_url = DEFAULT_RSS_HUB_BASEURL
     }
     const defaultGroups = rssConfig.default_group
-    /** @type { import("node-karin").KarinAdapter[] } */
-    let bot: AdapterType[]
+    const bot: AdapterType[] = []
     if (rssConfig.sender) {
-      const list = rssConfig.sender.map(sender => karin.getBot(sender))
-      list.forEach(b => b && bot.push(b))
+      const allBots = karin.getBotAll(false)
+      for (const b of allBots) {
+        if (rssConfig.sender.includes(b.account.selfId)) {
+          bot.push(b)
+        }
+      }
     } else {
-      bot = []
-
       const list = karin.getBotAll(false)
       for (const b of list) {
         if (b.account.selfId !== 'console') bot.push(b)

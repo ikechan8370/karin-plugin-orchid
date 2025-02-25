@@ -1,12 +1,13 @@
 import fs from 'fs'
 import Parser from 'rss-parser'
-import { config } from '@/utils/config'
+import { config, DATA_DIR } from '@/utils/config'
 import { HttpsProxyAgent } from 'https-proxy-agent'
 import xml2js from 'xml2js'
 import fetch from 'node-fetch'
 import { logger } from 'node-karin'
+import path from 'path'
 
-const dataFilePath = 'data/karin-plugin-orchid/rss.json'
+const dataFilePath = path.join(DATA_DIR, '/rss.json')
 
 /**
  *
