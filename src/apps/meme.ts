@@ -1,11 +1,11 @@
 import fs from 'node:fs'
 import _ from 'node-karin/lodash'
-import { config as Cfg } from '@/utils/config'
+import { config as Cfg, DATA_DIR } from '../utils/config'
 import fetch, { File, FormData } from 'node-fetch'
 import { karin, segment, config, logger } from 'node-karin'
-import { checkFileSize, DATA_DIR, mkdirs } from '@/utils/common'
+import { checkFileSize, mkdirs } from '../utils/common'
 
-import type { AtElementType, Message, Sender } from 'node-karin'
+import type { AtElement, Message, Sender } from 'node-karin'
 import path from 'node:path'
 
 const UA = 'karin-plugin-orchid/1.0.0'
@@ -126,7 +126,7 @@ const memes = async (e: Message) => {
   }
 
   let [text, args = ''] = argsStr.split('#')
-  let userInfos: AtElementType[] | undefined
+  let userInfos: AtElement[] | undefined
   const formData = new FormData()
   const info = infos[targetCode]
   let fileLoc
@@ -395,7 +395,7 @@ await init()
 
 export { commandAll }
 
-function handleArgs (key: string, args: string, userInfos: AtElementType[]) {
+function handleArgs (key: string, args: string, userInfos: AtElement[]) {
   if (!args) {
     args = ''
   }

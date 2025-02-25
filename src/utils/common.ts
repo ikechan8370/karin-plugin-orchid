@@ -1,9 +1,6 @@
-import { config, pluginName } from '@/utils/config'
+import { config } from './config'
 import fs from 'fs'
 import path from 'path'
-import { basePath } from 'node-karin'
-
-export const DATA_DIR = path.join(basePath, pluginName, 'data', 'karin-plugin-orchid')
 
 export function mkdirs (dirname: string) {
   if (fs.existsSync(dirname)) {

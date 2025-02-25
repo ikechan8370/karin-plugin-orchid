@@ -1,4 +1,4 @@
-import { dirPath } from '@/utils'
+import { dirPath } from '.'
 import {
   watch,
   basePath,
@@ -6,7 +6,8 @@ import {
   copyConfigSync,
   requireFileSync,
 } from 'node-karin'
-import type { Config } from '@/types/config'
+import type { Config } from '../types/config'
+import path from 'path'
 
 let cache: Config | undefined
 
@@ -17,6 +18,9 @@ export const pkg = () => requireFileSync(`${dirPath}/package.json`)
 
 /** 用户配置的插件名称 */
 export const pluginName = pkg().name.replace(/\//g, '-')
+
+export const DATA_DIR = path.join(basePath, pluginName, 'data')
+
 /** 用户配置 */
 const dirConfig = `${basePath}/${pluginName}/config`
 /** 默认配置 */
