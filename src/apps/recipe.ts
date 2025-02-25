@@ -1,4 +1,4 @@
-import { karin, render, segment, logger, common } from 'node-karin'
+import { karin, render, segment, logger, common, ImageElement } from 'node-karin'
 import Recipe from '@/recipe/index'
 import { dirPath } from '@/utils/dir'
 import { config } from '@/utils/config'
@@ -14,15 +14,14 @@ export const RecommendRecipeCmd = karin.command('#?(吃什么|推荐菜谱)', as
   }
   const recipes = summary.recipes
   const descr = summary.summary
-  await e.reply(segment.text(`推荐菜谱：${descr}`), { reply: true, at: true })
+  await e.reply(segment.text(`推荐菜谱：${descr}`), { reply: true })
 
   const defBackground = 'https://upload-bbs.miyoushe.com/upload/2024/08/08/11137146/a13030c06cea59159c6cab3d5538731d_6288383820731450582.jpg'
   const background = config().rss.background || defBackground
 
   await e.reply(segment.text('正在生成，请稍后...'), { reply: true })
 
-  // lgr转发图片用不了 不写了
-  const imgs: string[] = []
+  const imgs: ImageElement[] = []
 
   await Promise.allSettled(recipes.map(async (hit) => {
     const { levelColor, timeColor } = getAssets(hit)
@@ -41,7 +40,7 @@ export const RecommendRecipeCmd = karin.command('#?(吃什么|推荐菜谱)', as
       }
     })
 
-    imgs.push(`base64://${img}`)
+    imgs.push(segment.image(`base64://${img}`))
   }))
 
   const forwarded = common.makeForward(imgs, e.userId, e.sender.nick)
@@ -114,7 +113,7 @@ export const RandomRecipeCmd = karin.command('#?随机菜谱', async (e) => {
     }
   })
 
-  await e.reply(segment.image(img))
+  await e.reply(segment.image(`base64://${img}`))
   return true
 }, {
   name: 'random_recipe'
@@ -187,7 +186,7 @@ export const RecipeCmd = karin.command('#?菜谱', async (e) => {
           waitUntil: 'networkidle2'
         }
       })
-      await e.reply(segment.image(img))
+      await e.reply(segment.image(`base64://${img}`))
     }
   }
 
