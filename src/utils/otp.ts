@@ -3,8 +3,9 @@ import Jimp from 'jimp'
 import jsQR from 'jsqr'
 import { authenticator } from 'otplib'
 import axios from 'node-karin/axios'
-import { DATA_DIR, mkdirs } from './common.js'
+import { mkdirs } from './common'
 import { logger } from 'node-karin'
+import { DATA_DIR } from './config'
 
 mkdirs(DATA_DIR)
 if (!fs.existsSync(DATA_DIR + '/otp.json')) {
