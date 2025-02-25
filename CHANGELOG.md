@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/ikechan8370/karin-plugin-orchid/compare/v1.0.3...v1.0.4) (2025-02-25)
+
+
+### Bug Fixes
+
+* recipe ([a138078](https://github.com/ikechan8370/karin-plugin-orchid/commit/a138078f8a76e4030f7ca77854783a37de99319b))
+
 ## [1.0.3](https://github.com/ikechan8370/karin-plugin-orchid/compare/v1.0.2...v1.0.3) (2025-02-25)
 
 

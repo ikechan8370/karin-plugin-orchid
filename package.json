@@ -1,6 +1,6 @@
 {
   "name": "karin-plugin-orchid",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "ikechan8370",
   "type": "module",
   "main": "lib/index.js",
